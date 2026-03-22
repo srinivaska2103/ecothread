@@ -44,112 +44,188 @@
 </head>
 <body class="bg-secondary dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 transition-all min-h-screen flex flex-col">
 
-    <nav class="fixed top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700 w-full" x-data="{ mobileMenu: false, profileDrop: false }">
+   <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700" x-data="{ mobileMenu: false, profileDrop: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="shrink-0">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                        <span class="text-lg xs:text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                    </div>
+                <a href="index.html">
+                       <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
+                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
+                </div>
                 </a>
+             
+<div class="hidden lg:flex space-x-6 items-center" 
+     x-data="{ 
+        currentPath: window.location.pathname.split('/').pop() || 'index.html',
+        isActive(href) { 
+            return this.currentPath === href; 
+        }
+     }">
+    
+    <a href="index.html" 
+       :class="isActive('index.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Home
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('index.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
 
-                <div class="hidden lg:flex space-x-4 xl:space-x-6 items-center">
-                    <a href="index.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Home</a>
-                    <a href="home2.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Hom2</a>
-                    <a href="shop.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Shop</a>
-                    <a href="categories.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Categories</a>
-                    <a href="deals.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Deals</a>
-                    <a href="blog.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Blog</a>
-                    <a href="index.html" class="text-zinc-600 dark:text-zinc-400 hover:text-primary text-sm">Contact</a>
-                    
-                    <div class="relative" @click.away="profileDrop = false">
-                        <button @click="profileDrop = !profileDrop" class="flex items-center gap-1 hover:text-primary transition-colors py-2 text-sm">
-                            Account <i data-lucide="chevron-down" class="w-4 h-4 transition-transform" :class="profileDrop ? 'rotate-180' : ''"></i>
-                        </button>
-                        <div x-show="profileDrop" x-cloak class="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-xl rounded-xl py-2 overflow-hidden">
-                            <a href="user.html" @click="view = 'account'" class="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700">User Dashboard</a>
-                            <a href="admin.html" class="block px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-700 text-red-500">Admin Panel</a>
-                        </div>
-                    </div>
-                      </button>
+    <a href="home2.html" 
+       :class="isActive('home2.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Home 2
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('home2.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="shop.html" 
+       :class="isActive('shop.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Shop
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('shop.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="categories.html" 
+       :class="isActive('categories.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Categories
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('categories.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="deals.html" 
+       :class="isActive('deals.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Deals
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('deals.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="blog.html" 
+       :class="isActive('blog.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Blog
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('blog.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="contact.html" 
+       :class="isActive('contact.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Contact
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('contact.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+    
+    <div class="relative" @click.away="profileDrop = false" x-data="{ profileDrop: false }">
+        <button @click="profileDrop = !profileDrop" 
+                class="flex items-center gap-1 hover:text-primary transition-colors py-2"
+                :class="(isActive('user.html') || isActive('admin.html')) ? 'text-primary font-bold' : ''">
+            Account 
+            <svg class="w-4 h-4 transition-transform" :class="profileDrop ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <div x-show="profileDrop" x-cloak 
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             class="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-xl rounded-lg py-2">
+            <a href="user.html" class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-700" :class="isActive('user.html') ? 'bg-zinc-50 dark:bg-zinc-700 text-primary font-bold' : ''">User Dashboard</a>
+            <a href="admin.html" class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 font-semibold text-red-500" :class="isActive('admin.html') ? 'bg-red-50 dark:bg-zinc-700' : ''">Admin Panel</a>
+        </div>
+    </div>
+</div>
+                
+
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button @click="toggleLayout()" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-xs font-bold" title="Toggle Direction">
+                        <span x-text="layoutDir === 'ltr' ? 'LTR' : 'RTL'"></span>
+                    </button>
+                    <button @click="toggleDark()" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700">
+                        <template x-if="!darkMode">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        </template>
+                        <template x-if="darkMode">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        </template>
+                    </button>
                     <a href="login.html">
                     <button class="bg-primary text-white px-5 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">Login</button>
 
                     </a>
                 </div>
 
-
-
-                <div class="flex items-center space-x-2 md:space-x-4">
-                    <button @click="toggleLayout()" class="hidden xs:block p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-[10px] font-bold" x-text="layoutDir.toUpperCase()"></button>
-                    <button @click="toggleDark()" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700">
-                        <i data-lucide="moon" class="w-4 h-4" x-show="!darkMode"></i>
-                        <i data-lucide="sun" class="w-4 h-4 text-yellow-400" x-show="darkMode"></i>
-                    </button>
-
-                    <button @click="view = 'cart'" class="relative p-2 bg-primary text-white rounded-xl">
-                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                        <span x-show="cart.length > 0" class="absolute -top-1 -right-1 w-4 h-4 bg-zinc-900 text-[8px] flex items-center justify-center rounded-full border border-white" x-text="cart.length"></span>
-                    </button>
-                     
-                    <button @click="mobileMenu = !mobileMenu" class="lg:hidden p-1">
-                        <i data-lucide="menu" x-show="!mobileMenu" class="w-7 h-7"></i>
-                        <i data-lucide="x" x-show="mobileMenu" class="w-7 h-7"></i>
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button @click="mobileMenu = !mobileMenu" class="p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
-
-        <div x-show="mobileMenu" x-cloak x-transition class="lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-6 py-8 space-y-4 shadow-2xl">
-            <a href="index.html" class="block text-lg ">Home</a>
-            <a href="home2.html" class="block text-lg ">Home2</a>
-            <a href="shop.html" class="block text-lg">Shop</a>
-            <a href="categories.html" class="block text-lg ">Categories</a>
-            <a href="deals.html" class="block text-lg">Deals</a>
-            <a href="contact.html" class="block text-lg ">Contact</a>
-     <div class="py-1" x-data="{ mobProfileDrop: false }">
-    <button @click="mobProfileDrop = !mobProfileDrop" 
-            class="flex justify-between items-center w-full py-3 text-lg px-3 transition-colors rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800"
-            :class="(isActive('user.html') || isActive('admin.html')) ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-300'">
-        <span>Account</span>
-        <svg class="w-5 h-5 transition-transform duration-300" 
-             :class="mobProfileDrop ? 'rotate-180' : ''" 
-             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-    </button>
+        <div x-show="mobileMenu" 
+     x-cloak 
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0 -translate-y-4"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     class="lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1"
+     x-data="{ 
+        currentPath: window.location.pathname.split('/').pop() || 'index.html',
+        mobProfileDrop: false,
+        isActive(href) { return this.currentPath === href; }
+     }">
     
-    <div x-show="mobProfileDrop" 
-         x-cloak 
-         x-collapse 
-         class="mt-1 space-y-1 bg-zinc-50 dark:bg-zinc-900/50 rounded-xl overflow-hidden">
+    <a href="index.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('index.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home</a>
+    
+    <a href="home2.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('home2.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home 2</a>
+    
+    <a href="shop.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('shop.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Shop</a>
+    
+    <a href="categories.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('categories.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Categories</a>
+    
+    <a href="deals.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('deals.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Deals</a>
+    
+    <a href="contact.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('contact.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Contact</a>
+
+    <div class="py-1">
+        <button @click="mobProfileDrop = !mobProfileDrop" 
+                class="flex justify-between items-center w-full py-3 text-lg px-3 transition-colors"
+                :class="(isActive('user.html') || isActive('admin.html')) ? 'text-primary font-bold' : ''">
+            <span>Account</span>
+            <svg class="w-5 h-5 transition-transform duration-300" :class="mobProfileDrop ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
         
-        <a href="user.html" 
-           @click="view = 'account'; mobileMenu = false"
-           class="block py-3 pl-8 pr-4 text-base transition-colors hover:text-primary" 
-           :class="isActive('user.html') ? 'text-primary font-bold bg-primary/5' : 'text-zinc-500 dark:text-zinc-400'">
-           User Dashboard
-        </a>
-        
-        <a href="admin.html" 
-           @click="view = 'admin'; mobileMenu = false"
-           class="block py-3 pl-8 pr-4 text-base transition-colors hover:text-red-500 border-t dark:border-zinc-800" 
-           :class="isActive('admin.html') ? 'text-red-500 font-bold bg-red-50 dark:bg-red-900/10' : 'text-red-400'">
-           Admin Panel
-        </a>
-    </div>
-</div>
-            <!-- <button @click="view = 'account'; mobileMenu = false" class="block text-lg">My Account</button> -->
-            <div class="pt-4 border-t flex justify-between items-center">
-                <span class="text-sm font-bold uppercase text-zinc-400">Layout</span>
-                <button @click="toggleLayout()" class="px-4 py-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold" x-text="layoutDir.toUpperCase()"></button>
-            </div>
-            <a href="login.html">
-                  <button class="w-full btn-primary !py-4">Login</button>
-            </a>
-          
+        <div x-show="mobProfileDrop" x-cloak x-collapse class="pl-6 space-y-1 bg-zinc-50 dark:bg-zinc-900/50 rounded-lg mx-2">
+            <a href="user.html" class="block py-3 text-md" :class="isActive('user.html') ? 'text-primary font-bold' : 'text-zinc-500'">User Dashboard</a>
+            <a href="admin.html" class="block py-3 text-md" :class="isActive('admin.html') ? 'text-primary font-bold text-red-500' : 'text-red-400'">Admin Panel</a>
         </div>
+    </div>
+
+    <hr class="my-4 dark:border-zinc-700">
+
+    <div class="flex justify-between items-center py-3 px-3">
+        <span class="text-sm font-medium">Theme</span>
+        <button @click="toggleDark()" class="flex items-center gap-2 p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider">
+            <span x-show="!darkMode">Light</span>
+            <span x-show="darkMode">Dark</span>
+        </button>
+    </div>
+    
+    <div class="flex justify-between items-center py-3 px-3">
+        <span class="text-sm font-medium">Layout</span>
+        <button @click="toggleLayout()" class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider" x-text="layoutDir"></button>
+    </div>
+    <a href="login.html">
+ <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
+        Login to Account
+    </button>
+    </a>
+   
+</div>
+
+       
     </nav>
     <main class="flex-grow max-w-7xl mx-auto px-4 md:px-8 py-12 w-full">
     
