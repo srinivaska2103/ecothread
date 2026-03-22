@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" x-data="appData()" :class="{ 'dark': darkMode }" :dir="layoutDir">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="assets/letter-e.png">
+    <title>Coming Soon | EcoThread Sustainable Drops</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#2D5A27' },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .no-select { -webkit-user-select: none; user-select: none; }
+    </style>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-500 flex items-center justify-center min-h-screen p-4 overflow-x-hidden">
+
+    <header class="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12 shadow-lg">E</div>
+            <span class="text-lg md:text-xl font-black tracking-tighter group-hover:text-primary transition-colors">ECO THREAD</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+            <button @click="toggleLayout()" class="p-2 md:p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black uppercase" title="Switch Direction">
+                <span x-text="layoutDir"></span>
+            </button>
+            <button @click="toggleDark()" class="p-2 md:p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm transition-all">
+                <i x-show="!darkMode" data-lucide="moon" class="w-4 h-4"></i>
+                <i x-show="darkMode" data-lucide="sun" class="w-4 h-4 text-yellow-500"></i>
+            </button>
+        </div>
+    </header>
+    <br>
+    <br>    
+
+    <main class="w-full max-w-3xl text-center space-y-10 md:space-y-16 px-2 relative z-10" 
+          x-data="timerData()" 
+          x-init="startTimer()">
+        
+        <div class="space-y-4 md:space-y-6">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 dark:bg-primary/20 rounded-full text-primary dark:text-green-400 text-[10px] font-black uppercase tracking-[0.2em] animate-pulse-slow">
+                <span class="w-2 h-2 bg-primary rounded-full"></span>
+                Coming Spring 2026
+            </div>
+            <h1 class="text-5xl sm:text-7xl md:text-9xl font-black tracking-tighter leading-none">
+                Recrafting <br> <span class="text-primary italic">Luxury.</span>
+            </h1>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-xl max-w-md mx-auto px-4 leading-relaxed">
+                Our next collection of upcycled masterpieces is currently under craftsmanship. Join the waitlist for early access.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 px-4">
+            <template x-for="(val, label) in countdown" :key="label">
+                <div class="bg-white dark:bg-zinc-900 border dark:border-zinc-800 p-4 md:p-8 rounded-[2rem] shadow-xl shadow-zinc-200/50 dark:shadow-none transition-transform hover:-translate-y-1">
+                    <span class="text-3xl md:text-6xl font-black text-primary" x-text="val">00</span>
+                    <p class="text-[9px] md:text-xs font-black uppercase tracking-[0.2em] text-zinc-400 mt-2" x-text="label"></p>
+                </div>
+            </template>
+        </div>
+
+        <div class="max-w-md mx-auto space-y-6 px-4">
+            <div class="relative group">
+                <input type="email" placeholder="Enter your email for early access" 
+                       class="w-full pl-6 pr-14 py-4 md:py-5 bg-white dark:bg-zinc-900 border-2 border-zinc-100 dark:border-zinc-800 focus:border-primary rounded-[2rem] outline-none transition-all shadow-sm text-sm">
+                <button class="absolute right-3 top-1/2 -translate-y-1/2 p-3 md:p-4 bg-primary text-white rounded-full hover:scale-105 active:scale-95 transition-all">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="flex justify-center gap-6 text-zinc-400">
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="twitter" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <div class="fixed -bottom-10 -right-10 md:-bottom-20 md:-right-20 text-[10rem] sm:text-[15rem] md:text-[20rem] font-black text-zinc-100 dark:text-zinc-900/20 select-none pointer-events-none z-0">
+        ECO
+    </div>
+
+    <script>
+        function appData() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                layoutDir: localStorage.getItem('layout-dir') || 'ltr',
+                toggleDark() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                },
+                toggleLayout() {
+                    this.layoutDir = this.layoutDir === 'ltr' ? 'rtl' : 'ltr';
+                    localStorage.setItem('layout-dir', this.layoutDir);
+                },
+                init() { lucide.createIcons(); }
+            }
+        }
+
+        function timerData() {
+            return {
+                countdown: { Days: '00', Hours: '00', Mins: '00', Secs: '00' },
+                startTimer() {
+                    // Set date to 30 days from now
+                    const targetDate = new Date();
+                    targetDate.setDate(targetDate.getDate() + 30);
+
+                    setInterval(() => {
+                        const now = new Date().getTime();
+                        const distance = targetDate - now;
+
+                        this.countdown.Days = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                        this.countdown.Hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                        this.countdown.Mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                        this.countdown.Secs = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+                    }, 1000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

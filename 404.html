@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" x-data="appData()" :class="{ 'dark': darkMode }" :dir="layoutDir">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="assets/letter-e.png">
+    <title>404 | Page Recycled</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#2D5A27' },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(1deg)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        /* Prevent layout shift on small mobiles */
+        .no-select { -webkit-user-select: none; user-select: none; }
+    </style>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-500 flex items-center justify-center min-h-screen p-4 overflow-x-hidden">
+
+    <header class="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12 shadow-lg">E</div>
+            <span class="text-lg md:text-xl font-black tracking-tighter group-hover:text-primary transition-colors">ECO THREAD</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+            <button @click="toggleLayout()" class="p-2 md:p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black uppercase" title="Switch Direction">
+                <span x-text="layoutDir"></span>
+            </button>
+            <button @click="toggleDark()" class="p-2 md:p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm transition-all">
+                <i x-show="!darkMode" data-lucide="moon" class="w-4 h-4"></i>
+                <i x-show="darkMode" data-lucide="sun" class="w-4 h-4 text-yellow-500"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="w-full max-w-2xl text-center space-y-8 md:space-y-12 px-2 relative z-10">
+        
+        <div class="relative inline-block">
+            <h1 class="text-[8rem] sm:text-[12rem] md:text-[18rem] font-black leading-none text-zinc-200 dark:text-zinc-900 animate-float no-select">
+                404
+            </h1>
+            <div class="absolute inset-0 flex items-center justify-center translate-y-4 md:translate-y-12">
+                <p class="text-lg sm:text-2xl md:text-4xl font-black tracking-tighter bg-white dark:bg-zinc-950 px-4 md:px-6 py-2 rounded-xl md:rounded-2xl shadow-xl whitespace-nowrap">
+                    Page <span class="text-primary italic">Recycled.</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="space-y-6 max-w-sm md:max-w-md mx-auto">
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg px-4">
+                The thread you followed has reached a dead end. This page has been upcycled into something new.
+            </p>
+
+            <div class="relative group px-4 md:px-0">
+                <input type="text" placeholder="Search products..." class="w-full pl-5 pr-14 py-3 md:py-4 bg-white dark:bg-zinc-900 border-2 border-zinc-100 dark:border-zinc-800 focus:border-primary rounded-xl md:rounded-2xl outline-none transition-all shadow-sm text-sm">
+                <button class="absolute right-6 md:right-3 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-lg">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 px-4">
+            <a href="index.html" class="w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-primary text-white rounded-full font-black text-xs md:text-sm uppercase tracking-widest shadow-lg hover:scale-105 active:scale-95 transition-all">
+                Back to Home
+            </a>
+            <a href="login.html" class="w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 border-2 border-zinc-200 dark:border-zinc-800 rounded-full font-bold text-xs md:text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all">
+                Forgot Password?
+            </a>
+        </div>
+
+        <div class="pt-4 md:pt-8 space-y-4 md:space-y-6">
+            <div class="flex justify-center gap-5 md:gap-6 text-zinc-400">
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="twitter" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="facebook" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+                <a href="#" class="hover:text-primary transition-all hover:-translate-y-1"><i data-lucide="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i></a>
+            </div>
+            <p class="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-zinc-400">Lost but not forgotten.</p>
+        </div>
+    </main>
+
+    <div class="fixed -bottom-10 -right-10 md:-bottom-20 md:-right-20 text-[10rem] sm:text-[15rem] md:text-[20rem] font-black text-zinc-100 dark:text-zinc-900/20 select-none pointer-events-none z-0">
+        ECO
+    </div>
+
+    <script>
+        function appData() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                layoutDir: localStorage.getItem('layout-dir') || 'ltr',
+                toggleDark() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                },
+                toggleLayout() {
+                    this.layoutDir = this.layoutDir === 'ltr' ? 'rtl' : 'ltr';
+                    localStorage.setItem('layout-dir', this.layoutDir);
+                },
+                init() { 
+                    lucide.createIcons(); 
+                }
+            }
+        }
+    </script>
+</body>
+</html>

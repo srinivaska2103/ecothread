@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" x-data="appData()" :class="{ 'dark': darkMode }" :dir="layoutDir">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="assets/letter-e.png">
+    <title>EcoThread | Sustainable & Upcycled Fashion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D5A27', // Earthy Green
+                        secondary: '#F4F1EA', // Recycled Paper White
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .transition-all { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-secondary dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 transition-all">
+
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700" x-data="{ mobileMenu: false, profileDrop: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html">
+                       <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
+                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
+                </div>
+                </a>
+             
+<div class="hidden lg:flex space-x-6 items-center" 
+     x-data="{ 
+        currentPath: window.location.pathname.split('/').pop() || 'index.html',
+        isActive(href) { 
+            return this.currentPath === href; 
+        }
+     }">
+    
+    <a href="index.html" 
+       :class="isActive('index.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Home
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('index.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="home2.html" 
+       :class="isActive('home2.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Home 2
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('home2.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="shop.html" 
+       :class="isActive('shop.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Shop
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('shop.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="categories.html" 
+       :class="isActive('categories.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Categories
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('categories.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="deals.html" 
+       :class="isActive('deals.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Deals
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('deals.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="blog.html" 
+       :class="isActive('blog.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Blog
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('blog.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+
+    <a href="contact.html" 
+       :class="isActive('contact.html') ? 'text-primary font-bold' : 'text-zinc-600 dark:text-zinc-400 hover:text-primary'" 
+       class="relative py-2 transition-all duration-300 group">
+       Contact
+       <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300" :class="isActive('contact.html') ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'"></span>
+    </a>
+    
+    <div class="relative" @click.away="profileDrop = false" x-data="{ profileDrop: false }">
+        <button @click="profileDrop = !profileDrop" 
+                class="flex items-center gap-1 hover:text-primary transition-colors py-2"
+                :class="(isActive('user.html') || isActive('admin.html')) ? 'text-primary font-bold' : ''">
+            Account 
+            <svg class="w-4 h-4 transition-transform" :class="profileDrop ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        <div x-show="profileDrop" x-cloak 
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             class="absolute right-0 mt-2 w-48 bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-xl rounded-lg py-2">
+            <a href="user.html" class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-700" :class="isActive('user.html') ? 'bg-zinc-50 dark:bg-zinc-700 text-primary font-bold' : ''">User Dashboard</a>
+            <a href="admin.html" class="block px-4 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-700 font-semibold text-red-500" :class="isActive('admin.html') ? 'bg-red-50 dark:bg-zinc-700' : ''">Admin Panel</a>
+        </div>
+    </div>
+</div>
+                
+
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button @click="toggleLayout()" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700 text-xs font-bold" title="Toggle Direction">
+                        <span x-text="layoutDir === 'ltr' ? 'LTR' : 'RTL'"></span>
+                    </button>
+                    <button @click="toggleDark()" class="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-700">
+                        <template x-if="!darkMode">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        </template>
+                        <template x-if="darkMode">
+                            <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                        </template>
+                    </button>
+                    <a href="login.html">
+                    <button class="bg-primary text-white px-5 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">Login</button>
+
+                    </a>
+                </div>
+
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button @click="mobileMenu = !mobileMenu" class="p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div x-show="mobileMenu" 
+     x-cloak 
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0 -translate-y-4"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     class="lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1"
+     x-data="{ 
+        currentPath: window.location.pathname.split('/').pop() || 'index.html',
+        mobProfileDrop: false,
+        isActive(href) { return this.currentPath === href; }
+     }">
+    
+    <a href="index.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('index.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home</a>
+    
+    <a href="home2.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('home2.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home 2</a>
+    
+    <a href="shop.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('shop.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Shop</a>
+    
+    <a href="categories.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('categories.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Categories</a>
+    
+    <a href="deals.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('deals.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Deals</a>
+    
+    <a href="contact.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('contact.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Contact</a>
+
+    <div class="py-1">
+        <button @click="mobProfileDrop = !mobProfileDrop" 
+                class="flex justify-between items-center w-full py-3 text-lg px-3 transition-colors"
+                :class="(isActive('user.html') || isActive('admin.html')) ? 'text-primary font-bold' : ''">
+            <span>Account</span>
+            <svg class="w-5 h-5 transition-transform duration-300" :class="mobProfileDrop ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </button>
+        
+        <div x-show="mobProfileDrop" x-cloak x-collapse class="pl-6 space-y-1 bg-zinc-50 dark:bg-zinc-900/50 rounded-lg mx-2">
+            <a href="user.html" class="block py-3 text-md" :class="isActive('user.html') ? 'text-primary font-bold' : 'text-zinc-500'">User Dashboard</a>
+            <a href="admin.html" class="block py-3 text-md" :class="isActive('admin.html') ? 'text-primary font-bold text-red-500' : 'text-red-400'">Admin Panel</a>
+        </div>
+    </div>
+
+    <hr class="my-4 dark:border-zinc-700">
+
+    <div class="flex justify-between items-center py-3 px-3">
+        <span class="text-sm font-medium">Theme</span>
+        <button @click="toggleDark()" class="flex items-center gap-2 p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider">
+            <span x-show="!darkMode">Light</span>
+            <span x-show="darkMode">Dark</span>
+        </button>
+    </div>
+    
+    <div class="flex justify-between items-center py-3 px-3">
+        <span class="text-sm font-medium">Layout</span>
+        <button @click="toggleLayout()" class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider" x-text="layoutDir"></button>
+    </div>
+
+    <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
+        Login to Account
+    </button>
+</div>
+
+       
+    </nav>
+
+    <section class="relative pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-32 bg-white dark:bg-zinc-950 overflow-hidden transition-colors duration-500"
+         x-data="{ transform: false }">
+    
+    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-10">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000"
+             :class="transform ? 'translate-x-10 translate-y-10' : ''"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            
+            <div class="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left md:mx-auto lg:mx-0"
+                 @mouseenter="transform = true" @mouseleave="transform = false">
+                
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full text-primary text-[10px] md:text-xs font-black uppercase tracking-[0.2em]">
+                    <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+                    The Circular Evolution
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-zinc-900 dark:text-white">
+                    From Waste <br>
+                    <span class="text-primary italic transition-opacity duration-700"
+                          :class="transform ? 'opacity-100' : 'opacity-60'">to Wardrobe</span>
+                </h1>
+
+                <p class="text-base md:text-xl text-zinc-500 dark:text-zinc-400 max-w-xl md:mx-auto lg:mx-0 leading-relaxed">
+                    We don't just recycle; we resurrect. Every discarded textile holds the DNA of a new masterpiece. Explore how your choices reshape fashion history.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-6">
+                    <button class="w-full sm:w-auto px-10 py-5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-xl active:scale-95 group/btn">
+                        Shop Collection
+                        <i data-lucide="shopping-bag" class="w-4 h-4 inline-block ml-2 group-hover/btn:rotate-6 transition-transform"></i>
+                    </button>
+                    
+                    <button class="w-full sm:w-auto px-10 py-5 border-2 border-zinc-200 dark:border-zinc-700 rounded-2xl font-bold text-xs uppercase tracking-widest hover:border-primary hover:text-primary dark:hover:border-primary transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="refresh-ccw" class="w-4 h-4 animate-spin-slow"></i>
+                        See the Transformation
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-1/2 relative group/visual cursor-pointer">
+                <div class="relative aspect-[4/5] md:aspect-[3/2] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 transform group-hover/visual:-translate-y-2">
+                    
+                    <div class="flex h-full w-full">
+                        
+                        <div class="w-1/2 h-full overflow-hidden relative border-r-2 border-white/20">
+                            <img src="assets/c1" 
+                                 class="w-full h-full object-cover grayscale transition-all duration-1000 scale-105 group-hover/visual:scale-100"
+                                 :class="transform ? 'grayscale-0' : 'grayscale'">
+                            <span class="absolute top-6 left-6 px-4 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-[10px] font-black uppercase text-white tracking-widest">
+                                The Raw Waste
+                            </span>
+                        </div>
+
+                        <div class="w-1/2 h-full overflow-hidden relative">
+                            <img src="assets/c2" 
+                                 class="w-full h-full object-cover transition-all duration-1000 scale-110 group-hover/visual:scale-105">
+                            <span class="absolute top-6 right-6 px-4 py-1.5 bg-primary/80 backdrop-blur-sm rounded-full text-[10px] font-black uppercase text-white tracking-widest">
+                                The Upcycled Piece
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover/visual:opacity-100 transition-opacity duration-700">
+                        <span class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-white">
+                            Hover to see the evolution
+                        </span>
+                    </div>
+                </div>
+
+                <div class="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 text-[10rem] md:text-[18rem] font-black text-zinc-100/70 dark:text-zinc-900/10 select-none pointer-events-none -z-10 leading-none">
+                    ECO
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+    // Watch for Alpine changes to refresh icons if needed in loops
+    document.addEventListener('alpine:init', () => {
+        Alpine.effect(() => {
+            setTimeout(() => lucide.createIcons(), 50);
+        });
+    });
+</script>
+
+<section class="py-20 bg-[#F9F7F2] dark:bg-zinc-950 transition-colors duration-500 overflow-hidden" 
+         x-data="{ activeCat: 'Upcycled Denim' }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+        
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+            <div class="max-w-2xl">
+                <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3 animate-pulse">Choose Your Impact</h2>
+                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                    Shop with <span class="text-primary italic">Intent.</span>
+                </h3>
+            </div>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-sm border-l-2 border-primary/20 pl-6 leading-relaxed">
+                Filter your wardrobe by the change you want to see. Every category represents a verified environmental mission.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <div class="group relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl bg-zinc-900 cursor-pointer"
+                 @mouseenter="activeCat = 'Upcycled Denim'">
+                <img src="assets/cimg1" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110 opacity-70 group-hover:opacity-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="recycle" class="w-5 h-5 text-primary"></i>
+                        <span class="text-[10px] font-black uppercase text-white tracking-widest">Archive Series</span>
+                    </div>
+                    <h4 class="text-3xl font-black text-white tracking-tight">Upcycled Denim</h4>
+                    <p class="text-zinc-400 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500">Reconstructed from vintage Levi's and deadstock scraps.</p>
+                </div>
+            </div>
+
+            <div class="group relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl bg-zinc-200 cursor-pointer"
+                 @mouseenter="activeCat = 'Recycled Fabrics'">
+                <img src="assets/cimg2" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <h4 class="text-3xl font-black text-zinc-900 dark:text-white tracking-tight group-hover:text-primary transition-colors">Recycled Fabrics</h4>
+                    <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mt-2">100% Ocean Plastics</p>
+                </div>
+            </div>
+
+            <div class="group relative aspect-[4/5] md:col-span-2 lg:col-span-1 lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl bg-zinc-900 cursor-pointer"
+                 @mouseenter="activeCat = 'Water Saving'">
+                <img src="assets/cimg3" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                <div class="absolute top-8 right-8 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-white text-center">
+                    <p class="text-2xl font-black text-primary">85%</p>
+                    <p class="text-[8px] font-bold uppercase tracking-tighter">Less Water</p>
+                </div>
+                <div class="absolute bottom-8 left-8">
+                    <h4 class="text-3xl font-black text-white tracking-tight">Water-Saving</h4>
+                </div>
+            </div>
+
+            <div class="group relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl bg-white border border-zinc-100 dark:border-zinc-800 cursor-pointer"
+                 @mouseenter="activeCat = 'Handmade'">
+                <div class="p-12 h-full flex flex-col justify-between">
+                    <i data-lucide="scissors" class="w-12 h-12 text-primary group-hover:rotate-45 transition-transform duration-500"></i>
+                    <div>
+                        <h4 class="text-3xl font-black text-zinc-900 dark:text-white tracking-tight">Handmade <br> Collection</h4>
+                        <p class="text-zinc-400 text-xs mt-4 leading-relaxed italic">Crafted by local artisans in our Mumbai studio.</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-10 -right-10 text-9xl font-black text-zinc-50 select-none -z-10 group-hover:text-primary/5 transition-colors">🧵</div>
+            </div>
+
+            <div class="group relative aspect-[4/5] md:aspect-square lg:col-span-2 lg:aspect-auto rounded-[3rem] overflow-hidden shadow-xl bg-zinc-900 cursor-pointer">
+                <img src="assets/cimg4" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-center p-12 space-y-4">
+                    <span class="px-4 py-1 bg-primary text-white text-[10px] font-black uppercase tracking-widest w-fit rounded-full">New Evolution</span>
+                    <h4 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Zero-Waste <br> Designs</h4>
+                    <button class="flex items-center gap-3 text-white text-xs font-black uppercase tracking-[0.2em] group/btn">
+                        Explore Pattern Tech
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-3 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+    // Re-init on interactive changes if using Alpine
+    document.addEventListener('alpine:init', () => {
+        Alpine.effect(() => {
+            setTimeout(() => lucide.createIcons(), 50);
+        });
+    });
+</script>
+
+<section class="py-20 bg-[#F9F7F2] dark:bg-zinc-950 transition-colors duration-500 overflow-hidden" 
+         x-data="{ activeStyle: '' }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+        
+        <div class="mb-16 text-center lg:text-left">
+            <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                Define Your <span class="text-primary italic">Aestheti.</span>
+            </h3>
+            <p class="mt-6 text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-xl mx-auto lg:mx-0 font-medium">
+                Curated collections categorized by silhouette and vibe. Whether you're making a statement or keeping it low-key.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 auto-rows-[300px] md:auto-rows-[350px]">
+            
+            <div class="group relative md:row-span-2 overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700"
+                 @mouseenter="activeStyle = 'Casual'">
+                <img src="assets/c3" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-10 left-10 text-white">
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] mb-2 text-primary">01</p>
+                    <h4 class="text-3xl font-black tracking-tight">Casual Wear</h4>
+                </div>
+            </div>
+
+            <div class="group relative lg:col-span-2 overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/c4" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-primary/10 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <span class="px-6 py-3 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase text-zinc-900 tracking-widest">Explore Streetwear</span>
+                    </div>
+                </div>
+                <div class="absolute bottom-10 left-10 text-white">
+                    <h4 class="text-3xl font-black tracking-tight">Streetwear</h4>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/c5" 
+                     class="w-full h-full object-cover transition-transform duration-1000 group-hover:rotate-1 group-hover:scale-110">
+                <div class="absolute bottom-10 left-10 text-zinc-900 group-hover:text-white transition-colors duration-500 z-10">
+                    <h4 class="text-2xl font-black tracking-tight">Minimal / Neutral</h4>
+                </div>
+                <div class="absolute inset-0 bg-zinc-900 opacity-0 group-hover:opacity-40 transition-opacity"></div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/c6" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                <div class="absolute bottom-10 left-10 text-white">
+                    <h4 class="text-2xl font-black tracking-tight">Vintage Revival</h4>
+                </div>
+            </div>
+
+            <div class="group relative lg:col-span-2 overflow-hidden rounded-[3rem] bg-zinc-900 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/c7" 
+                     class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 flex flex-col justify-center p-12">
+                    <div class="space-y-4">
+                        <span class="text-primary font-black uppercase text-[10px] tracking-[0.4em]">The Bold Choice</span>
+                        <h4 class="text-4xl md:text-5xl font-black text-white tracking-tighter">Statement Pieces</h4>
+                        <div class="w-12 h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+<section class="py-20 bg-white dark:bg-zinc-950 transition-colors duration-500 overflow-hidden" 
+         x-data="{ activeHover: null }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+        
+        <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="space-y-2">
+                <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px]">Find Your Silhouette</h2>
+                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
+                    Shop by <span class="text-primary italic">Fit.</span>
+                </h3>
+            </div>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm max-w-xs border-l-2 border-primary/20 pl-6">
+                From structured slim cuts to relaxed oversized drapes. Engineered for every body.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+            <div class="group relative aspect-[4/5] md:aspect-auto md:row-span-2 overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700"
+                 @mouseenter="activeHover = 'women'" @mouseleave="activeHover = null">
+                <img src="assets/women" 
+                     class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="absolute bottom-10 left-10 right-10 text-white space-y-4">
+                    <h4 class="text-4xl font-black tracking-tight">Women</h4>
+                    <div class="flex gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                        <span class="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/20 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-primary transition-colors">Oversized</span>
+                        <span class="px-4 py-2 bg-white/20 backdrop-blur-md border border-white/20 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-primary transition-colors">Slim Fit</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] bg-zinc-100 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/men" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:rotate-1">
+                <div class="absolute inset-0 bg-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="absolute bottom-10 left-10 text-white">
+                    <h4 class="text-3xl font-black tracking-tight">Men</h4>
+                    <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Structured Cuts</p>
+                </div>
+            </div>
+
+            <div class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] bg-zinc-900 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-700">
+                <img src="assets/unisex" 
+                     class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-1000">
+                <div class="absolute inset-0 flex flex-col justify-end p-10">
+                    <h4 class="text-3xl font-black text-white tracking-tight">Unisex</h4>
+                    <div class="w-10 h-1 bg-primary mt-4 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                </div>
+            </div>
+
+            <div class="group relative md:col-span-2 aspect-[16/9] md:aspect-auto overflow-hidden rounded-[3rem] bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 cursor-pointer p-8 md:p-12">
+                <div class="h-full flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="text-center md:text-left space-y-4">
+                        <span class="text-primary font-black text-[10px] tracking-[0.4em]">The Guide</span>
+                        <h4 class="text-3xl md:text-4xl font-black text-zinc-900 dark:text-white tracking-tighter">Find Your Perfect <br> Sustainable Fit.</h4>
+                        <button class="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-primary hover:gap-4 transition-all group/btn">
+                            View Size Guide <i data-lucide="arrow-right" class="w-4 h-4 transition-transform"></i>
+                        </button>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-20 h-28 bg-white dark:bg-zinc-800 rounded-2xl shadow-xl flex flex-col items-center justify-center border border-zinc-100 dark:border-zinc-700 hover:-translate-y-2 transition-transform">
+                            <i data-lucide="maximize" class="w-5 h-5 text-primary mb-2"></i>
+                            <span class="text-[8px] font-black uppercase">Oversized</span>
+                        </div>
+                        <div class="w-20 h-28 bg-white dark:bg-zinc-800 rounded-2xl shadow-xl flex flex-col items-center justify-center border border-zinc-100 dark:border-zinc-700 hover:-translate-y-2 transition-transform">
+                            <i data-lucide="minimize" class="w-5 h-5 text-zinc-400 mb-2"></i>
+                            <span class="text-[8px] font-black uppercase">Slim Fit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+
+
+
+<section class="py-20 bg-[#F9F7F2] dark:bg-zinc-950 transition-colors duration-500 overflow-hidden" 
+         x-data="{ active: 1 }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+        
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+            <div class="max-w-2xl">
+                <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3">Rarity & Craft</h2>
+                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                    Limited <span class="text-primary italic">Exclusives.</span>
+                </h3>
+            </div>
+            <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-sm border-l-2 border-primary/20 pl-6">
+                Because every textile has a history, no two pieces are ever the same. Once these vanish, they are gone for good.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <div class="lg:col-span-8 group relative overflow-hidden rounded-[3.5rem] bg-zinc-900 shadow-2xl transition-all duration-700 hover:-translate-y-2"
+                 @mouseenter="active = 1">
+                <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                
+                <img src="assets/i8" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100 opacity-80 group-hover:opacity-100">
+                
+                <div class="absolute top-8 left-8 z-20 flex gap-2">
+                    <span class="px-4 py-1.5 bg-primary text-white rounded-full text-[9px] font-black uppercase tracking-widest shadow-xl flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                        One-of-a-Kind
+                    </span>
+                    <span class="px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-[9px] font-black uppercase tracking-widest">
+                        Handcrafted 2026
+                    </span>
+                </div>
+
+                <div class="absolute bottom-12 left-8 right-8 z-20 space-y-4">
+                    <h4 class="text-4xl md:text-5xl font-black text-white tracking-tighter">The Archival Kimono</h4>
+                    <p class="text-zinc-400 text-sm md:text-base max-w-md leading-relaxed">
+                        Reconstructed from 1970s deadstock Japanese denim. Features hand-stitched sashiko detailing.
+                    </p>
+                    <button class="px-8 py-4 bg-white text-zinc-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-xl">
+                        Secure This Piece
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col gap-8">
+                
+                <div class="flex-1 group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                     @mouseenter="active = 2">
+                    <div class="relative z-10 space-y-4">
+                        <div class="flex justify-between items-start">
+                            <i data-lucide="package" class="w-8 h-8 text-primary group-hover:rotate-12 transition-transform"></i>
+                            <span class="text-[10px] font-black text-zinc-300 uppercase">Drop 04/10</span>
+                        </div>
+                        <h4 class="text-2xl font-black tracking-tight text-zinc-900 dark:text-white">Limited Drops</h4>
+                        <p class="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed">Small-batch releases of curated basics using recycled yarns.</p>
+                        
+                        <div class="pt-4 space-y-2">
+                            <div class="flex justify-between text-[8px] font-black uppercase tracking-widest text-primary">
+                                <span>Stock Remaining</span>
+                                <span>12%</span>
+                            </div>
+                            <div class="w-full h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary" style="width: 12%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <i data-lucide="clock" class="absolute -bottom-6 -right-6 w-32 h-32 text-zinc-50 dark:text-zinc-800/20 -z-0"></i>
+                </div>
+
+                <div class="flex-1 group relative overflow-hidden rounded-[3rem] bg-primary p-8 shadow-xl shadow-green-900/10 hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+                     @mouseenter="active = 3">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <span class="text-[10px] font-black text-white/60 uppercase tracking-widest">Available Now</span>
+                            <h4 class="text-2xl font-black text-white tracking-tight">Seasonal <br> Editions</h4>
+                        </div>
+                        <div class="pt-6 flex items-center justify-between text-white">
+                            <span class="text-[10px] font-black uppercase tracking-widest">Spring '26</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                    <i data-lucide="leaf" class="absolute -top-6 -right-6 w-24 h-24 text-white/10 rotate-45"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
+<section class="py-20 bg-[#F9F7F2] dark:bg-zinc-950 transition-colors duration-500 overflow-hidden" 
+         x-data="{ joined: false, count: 12450 }">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+        
+        <div class="relative group rounded-[3.5rem] bg-white dark:bg-zinc-900 p-8 md:p-16 lg:p-24 overflow-hidden shadow-2xl shadow-zinc-200 dark:shadow-none transition-all duration-700 border border-zinc-100 dark:border-zinc-800">
+            
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px] group-hover:scale-150 transition-transform duration-1000"></div>
+            <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[80px] group-hover:translate-x-20 transition-transform duration-1000"></div>
+
+            <div class="relative z-10 flex flex-col items-center text-center space-y-8 max-w-3xl mx-auto">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-black uppercase tracking-[0.3em]">
+                    <span class="w-2 h-2 bg-primary rounded-full animate-ping"></span>
+                    Join the 2026 Movement
+                </div>
+
+                <h2 class="text-4xl md:text-6xl lg:text-8xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                    Join & Save <br> <span class="text-primary italic">Sustainably.</span>
+                </h2>
+
+                <p class="text-zinc-500 dark:text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl">
+                    Unlock exclusive archival drops, earn eco-credits on every purchase, and join <span class="text-zinc-900 dark:text-white font-bold" x-text="count.toLocaleString()">12,450</span> conscious shoppers.
+                </p>
+
+                <div class="w-full max-w-md pt-6">
+                    <div x-show="!joined" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95">
+                        <form @submit.prevent="joined = true; count++" class="relative group/form">
+                            <input type="email" placeholder="Enter your email" required 
+                                   class="w-full pl-8 pr-36 py-5 bg-zinc-50 dark:bg-white/5 border-2 border-zinc-100 dark:border-white/10 focus:border-primary rounded-2xl text-zinc-900 dark:text-white outline-none transition-all shadow-inner placeholder:text-zinc-400">
+                            <a href="shop.html">
+                                 <button class="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-3 bg-primary text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all shadow-xl shadow-green-900/20 group-hover/form:translate-x-1">
+                                Get Access
+                            </button>
+                            </a>
+                           
+                        </form>
+                        <p class="mt-4 text-[9px] font-bold text-zinc-400 uppercase tracking-[0.2em]">Immediate 15% discount for new members</p>
+                    </div>
+
+                    <div x-show="joined" x-cloak 
+                         x-transition:enter="transition cubic-bezier(0.175, 0.885, 0.32, 1.275) duration-500" 
+                         x-transition:enter-start="opacity-0 scale-50 rotate-12"
+                         class="p-8 bg-primary/10 border border-primary/30 rounded-[2rem] flex flex-col items-center gap-4">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i data-lucide="check" class="w-6 h-6"></i>
+                        </div>
+                        <p class="text-primary font-black uppercase text-xs tracking-widest">Welcome to the Inner Circle!</p>
+                    </div>
+                </div>
+
+                <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <div class="flex flex-col items-center gap-2">
+                        <i data-lucide="award" class="w-5 h-5 text-zinc-900 dark:text-white"></i>
+                        <span class="text-[8px] text-zinc-900 dark:text-white font-bold uppercase tracking-widest">Ethical Award '25</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <i data-lucide="droplet" class="w-5 h-5 text-zinc-900 dark:text-white"></i>
+                        <span class="text-[8px] text-zinc-900 dark:text-white font-bold uppercase tracking-widest">Water Preserved</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-zinc-900 dark:text-white"></i>
+                        <span class="text-[8px] text-zinc-900 dark:text-white font-bold uppercase tracking-widest">Secure Checkout</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <i data-lucide="globe" class="w-5 h-5 text-zinc-900 dark:text-white"></i>
+                        <span class="text-[8px] text-zinc-900 dark:text-white font-bold uppercase tracking-widest">Global Shipping</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute -bottom-10 -left-10 text-[12rem] font-black text-zinc-100 dark:text-white/5 select-none pointer-events-none group-hover:-translate-x-10 transition-transform duration-1000">
+                ECO
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+    document.addEventListener('alpine:init', () => {
+        Alpine.effect(() => {
+            if (window.lucide) setTimeout(() => lucide.createIcons(), 50);
+        });
+    });
+</script>
+
+
+ <footer class="bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 pt-10 pb-6 md:pt-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+            
+            <div class="space-y-4">
+                <a href="index.html">
+                       <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
+                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
+                </div>
+                </a>
+                <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
+                    Reducing carbon footprints, one stitch at a time. High-quality upcycled clothing for the conscious generation.
+                </p>
+                <div class="flex space-x-5 text-zinc-500 dark:text-zinc-400 pt-2">
+                    <a href="#" class="hover:text-primary transition-all transform hover:scale-110"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-primary transition-all transform hover:scale-110"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-primary transition-all transform hover:scale-110"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-primary transition-all transform hover:scale-110"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 md:col-span-1 lg:col-span-2">
+                <div>
+                    <h4 class="font-bold text-xs mb-5 uppercase tracking-widest text-zinc-900 dark:text-zinc-100">Explore</h4>
+                    <ul class="space-y-3 text-sm text-zinc-500">
+                        <li><a href="index.html" class="hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="shop.html" class="hover:text-primary transition-colors">Shop</a></li>
+                        <li><a href="categories.html" class="hover:text-primary transition-colors">Categories</a></li>
+                        <li><a href="deals.html" class="hover:text-primary transition-colors">Deals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs mb-5 uppercase tracking-widest text-zinc-900 dark:text-zinc-100">Company</h4>
+                    <ul class="space-y-3 text-sm text-zinc-500">
+                        <li><a href="blog.html" class="hover:text-primary transition-colors">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-primary transition-colors">Contact</a></li>
+                        <li><a href="404.html" class="hover:text-primary transition-colors">404 Page</a></li>
+                        <li><a href="comingsoon.html" class="hover:text-primary transition-colors">Coming Soon</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-1 pt-8 md:pt-10 lg:pt-0 border-t md:border-t-2 md:border-zinc-100 dark:md:border-zinc-700 lg:border-none">
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-4 text-zinc-900 dark:text-zinc-100">Join the Revolution</h4>
+                <p class="text-sm text-zinc-500 mb-4">Get updates on new collections and sustainable fashion tips.</p>
+                <div class="flex w-full max-w-lg">
+                    <input type="email" placeholder="Email Address" class="bg-zinc-100 dark:bg-zinc-700 w-full px-4 py-3 text-sm rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary border-none text-zinc-800 dark:text-zinc-200">
+                    <button class="bg-primary text-white px-6 py-3 text-sm font-bold rounded-r-md hover:bg-opacity-90 transition-all shrink-0">JOIN</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-12 py-6 border-t dark:border-zinc-700 text-center">
+            <p class="text-[10px] md:text-xs text-zinc-400 uppercase tracking-[0.2em]">
+                &copy; 2026 EcoThread Sustainable Fashion. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        function appData() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                layoutDir: localStorage.getItem('layout-dir') || 'ltr',
+                
+                toggleDark() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                },
+                
+                toggleLayout() {
+                    this.layoutDir = this.layoutDir === 'ltr' ? 'rtl' : 'ltr';
+                    localStorage.setItem('layout-dir', this.layoutDir);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

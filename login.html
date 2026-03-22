@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" x-data="appData()" :class="{ 'dark': darkMode }" :dir="layoutDir">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="assets/letter-e.png">
+    <title>Login | EcoThread</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { primary: '#2D5A27' }
+                }
+            }
+        }
+    </script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-500 flex items-center justify-center min-h-screen p-4">
+
+    <header class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-50">
+        <a href="index.html" class="flex items-center gap-2 group">
+            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12 shadow-lg">E</div>
+            <span class="text-xl font-black tracking-tighter group-hover:text-primary transition-colors hidden sm:block">ECO THREAD</span>
+        </a>
+
+        <div class="flex items-center gap-2">
+            <button @click="toggleLayout()" class="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black" title="Switch Direction">
+                <span x-text="layoutDir.toUpperCase()"></span>
+            </button>
+            <button @click="toggleDark()" class="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm transition-all">
+                <i x-show="!darkMode" data-lucide="moon" class="w-4 h-4"></i>
+                <i x-show="darkMode" data-lucide="sun" class="w-4 h-4 text-yellow-500"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="w-full max-w-md bg-white dark:bg-zinc-900 rounded-[2.5rem] shadow-2xl shadow-zinc-200 dark:shadow-none border dark:border-zinc-800 p-8 md:p-12 transition-all"
+          x-data="{ showPass: false }">
+        
+        <div class="space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl md:text-4xl font-black tracking-tighter">Welcome Back</h2>
+                <p class="text-zinc-500 dark:text-zinc-400 text-sm">Sign in to your sustainable account</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+                <button class="flex justify-center py-3 border dark:border-zinc-700 rounded-2xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all group">
+                    <i data-lucide="chrome" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                </button>
+                <button class="flex justify-center py-3 border dark:border-zinc-700 rounded-2xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all group">
+                    <i data-lucide="github" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                </button>
+                <button class="flex justify-center py-3 border dark:border-zinc-700 rounded-2xl hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all group">
+                    <i data-lucide="twitter" class="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform"></i>
+                </button>
+            </div>
+
+            <div class="relative flex items-center">
+                <div class="flex-grow border-t dark:border-zinc-800"></div>
+                <span class="mx-4 text-[10px] font-black uppercase tracking-widest text-zinc-400">or use email</span>
+                <div class="flex-grow border-t dark:border-zinc-800"></div>
+            </div>
+
+            <form class="space-y-5">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500 ml-1">Email</label>
+                    <div class="relative group">
+                        <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-primary transition-colors"></i>
+                        <input type="email" placeholder="srinivas@eco.com" class="w-full pl-12 pr-4 py-4 bg-zinc-50 dark:bg-zinc-800/50 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-zinc-800 rounded-2xl outline-none transition-all text-sm">
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center px-1">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-zinc-500">Password</label>
+                       
+                    </div>
+                    <div class="relative group">
+                        <i data-lucide="lock" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-primary transition-colors"></i>
+                        <input :type="showPass ? 'text' : 'password'" placeholder="••••••••" class="w-full pl-12 pr-12 py-4 bg-zinc-50 dark:bg-zinc-800/50 border-2 border-transparent focus:border-primary focus:bg-white dark:focus:bg-zinc-800 rounded-2xl outline-none transition-all text-sm">
+                        <button type="button" @click="showPass = !showPass" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-primary">
+                            <i x-show="!showPass" data-lucide="eye" class="w-4 h-4"></i>
+                            <i x-show="showPass" data-lucide="eye-off" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                     <a href="#" class="text-[10px] font-bold text-primary hover:underline">Forgot Password?</a>
+                </div>
+              
+                     <button class="w-full bg-primary text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-green-900/10 hover:opacity-90 active:scale-[0.98] transition-all">
+                    Sign In
+                </button>
+              
+               
+            </form>
+
+            <p class="text-center text-xs text-zinc-500">
+                New here? <a href="regesiter.html" class="font-black text-primary hover:underline">Create Account</a>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        function appData() {
+            return {
+                darkMode: localStorage.getItem('dark-mode') === 'true',
+                layoutDir: localStorage.getItem('layout-dir') || 'ltr',
+                toggleDark() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('dark-mode', this.darkMode);
+                },
+                toggleLayout() {
+                    this.layoutDir = this.layoutDir === 'ltr' ? 'rtl' : 'ltr';
+                    localStorage.setItem('layout-dir', this.layoutDir);
+                },
+                init() { lucide.createIcons(); }
+            }
+        }
+    </script>
+</body>
+</html>
