@@ -39,6 +39,22 @@
         /* Shimmer effect for the interactive button */
         @keyframes shimmer { 100% { transform: translateX(100%); } }
         .animate-shimmer { animation: shimmer 2s infinite; }
+        /* Add this to your <style> section */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Force the nav to the very top */
+nav {
+    top: 0 !important;
+}
     </style>
 </head>
 <body class="bg-secondary dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 transition-all min-h-screen flex flex-col">
