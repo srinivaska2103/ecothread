@@ -311,7 +311,7 @@
             <div class="max-w-2xl">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3 animate-pulse">Choose Your Impact</h2>
                 <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                    Shop with <span class="text-primary italic">Intent.</span>
+                    Shop with <span class="text-primary italic">Intent</span>
                 </h3>
             </div>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-sm border-l-2 border-primary/20 pl-6 leading-relaxed">
@@ -342,8 +342,8 @@
                      class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
                 <div class="absolute inset-0 bg-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div class="absolute bottom-8 left-8 right-8">
-                    <h4 class="text-3xl font-black text-zinc-900 dark:text-white tracking-tight group-hover:text-primary transition-colors">Recycled Fabrics</h4>
-                    <p class="text-zinc-500 text-xs font-bold uppercase tracking-widest mt-2">100% Ocean Plastics</p>
+                    <h4 class="text-3xl font-black text-white tracking-tight">Recycled Fabrics</h4>
+                    <p class="font-black text-white  text-xs font-bold uppercase tracking-widest mt-2">100% Ocean Plastics</p>
                 </div>
             </div>
 
@@ -362,6 +362,8 @@
 
             <div class="group relative aspect-[4/5] md:aspect-square lg:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl bg-white border border-zinc-100 dark:border-zinc-800 cursor-pointer"
                  @mouseenter="activeCat = 'Handmade'">
+                    <img src="assets/b5" 
+                     class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
                 <div class="p-12 h-full flex flex-col justify-between">
                     <i data-lucide="scissors" class="w-12 h-12 text-primary group-hover:rotate-45 transition-transform duration-500"></i>
                     <div>
@@ -407,7 +409,7 @@
         
         <div class="mb-16 text-center lg:text-left">
             <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                Define Your <span class="text-primary italic">Aestheti.</span>
+                Define Your <span class="text-primary italic">Aestheti</span>
             </h3>
             <p class="mt-6 text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-xl mx-auto lg:mx-0 font-medium">
                 Curated collections categorized by silhouette and vibe. Whether you're making a statement or keeping it low-key.
@@ -485,7 +487,7 @@
             <div class="space-y-2">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px]">Find Your Silhouette</h2>
                 <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
-                    Shop by <span class="text-primary italic">Fit.</span>
+                    Shop by <span class="text-primary italic">Fit</span>
                 </h3>
             </div>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm max-w-xs border-l-2 border-primary/20 pl-6">
@@ -516,7 +518,7 @@
                 <div class="absolute inset-0 bg-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div class="absolute bottom-10 left-10 text-white">
                     <h4 class="text-3xl font-black tracking-tight">Men</h4>
-                    <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Structured Cuts</p>
+                    <!-- <p class="text-[10px] font-bold text-primary uppercase tracking-widest mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Structured Cuts</p> -->
                 </div>
             </div>
 
@@ -568,7 +570,7 @@
             <div class="max-w-2xl">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3">Rarity & Craft</h2>
                 <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                    Limited <span class="text-primary italic">Exclusives.</span>
+                    Limited <span class="text-primary italic">Exclusives</span>
                 </h3>
             </div>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-sm border-l-2 border-primary/20 pl-6">
@@ -605,48 +607,122 @@
                     </button>
                 </div>
             </div>
+            <div class="lg:col-span-4 flex flex-col gap-4 md:gap-6 h-full flex-1">
+    
+    <div class="flex-1 flex flex-col group relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-zinc-900 p-6 md:p-8 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+         @mouseenter="active = 2">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="assets/b3" 
+                 alt="Recycled Fabric" 
+                 class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-700 grayscale group-hover:grayscale-0">
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+        </div>
 
-            <div class="lg:col-span-4 flex flex-col gap-8">
+        <div class="relative z-10 flex-1 flex flex-col justify-between">
+            <div class="space-y-4">
+                <div class="flex justify-between items-start">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center">
+                        <i data-lucide="package" class="w-5 h-5 text-white group-hover:rotate-12 transition-transform"></i>
+                    </div>
+                    <span class="text-[9px] md:text-[10px] font-black text-white/40 uppercase tracking-widest">Drop 04/10</span>
+                </div>
                 
-                <div class="flex-1 group relative overflow-hidden rounded-[3rem] bg-white dark:bg-zinc-900 p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                     @mouseenter="active = 2">
-                    <div class="relative z-10 space-y-4">
-                        <div class="flex justify-between items-start">
-                            <i data-lucide="package" class="w-8 h-8 text-primary group-hover:rotate-12 transition-transform"></i>
-                            <span class="text-[10px] font-black text-zinc-300 uppercase">Drop 04/10</span>
-                        </div>
-                        <h4 class="text-2xl font-black tracking-tight text-zinc-900 dark:text-white">Limited Drops</h4>
-                        <p class="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed">Small-batch releases of curated basics using recycled yarns.</p>
-                        
-                        <div class="pt-4 space-y-2">
-                            <div class="flex justify-between text-[8px] font-black uppercase tracking-widest text-primary">
-                                <span>Stock Remaining</span>
-                                <span>12%</span>
-                            </div>
-                            <div class="w-full h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                                <div class="h-full bg-primary" style="width: 12%"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <i data-lucide="clock" class="absolute -bottom-6 -right-6 w-32 h-32 text-zinc-50 dark:text-zinc-800/20 -z-0"></i>
+                <div>
+                    <h4 class="text-xl md:text-2xl font-black tracking-tight text-white">Limited Drops</h4>
+                    <p class="text-zinc-300 text-[11px] md:text-xs leading-relaxed mt-1">Small-batch releases of curated basics using recycled yarns.</p>
                 </div>
-
-                <div class="flex-1 group relative overflow-hidden rounded-[3rem] bg-primary p-8 shadow-xl shadow-green-900/10 hover:-translate-y-2 transition-all duration-500 cursor-pointer"
-                     @mouseenter="active = 3">
-                    <div class="relative z-10 h-full flex flex-col justify-between">
-                        <div class="space-y-4">
-                            <span class="text-[10px] font-black text-white/60 uppercase tracking-widest">Available Now</span>
-                            <h4 class="text-2xl font-black text-white tracking-tight">Seasonal <br> Editions</h4>
-                        </div>
-                        <div class="pt-6 flex items-center justify-between text-white">
-                            <span class="text-[10px] font-black uppercase tracking-widest">Spring '26</span>
-                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
-                        </div>
-                    </div>
-                    <i data-lucide="leaf" class="absolute -top-6 -right-6 w-24 h-24 text-white/10 rotate-45"></i>
-                </div>
-
             </div>
+            
+            <div class="pt-4 space-y-2">
+                <div class="flex justify-between text-[8px] font-black uppercase tracking-widest text-white">
+                    <span>Stock Remaining</span>
+                    <span>12%</span>
+                </div>
+                <div class="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full bg-white transition-all duration-1000" style="width: 12%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col group relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-zinc-900 p-6 md:p-8 shadow-xl shadow-black/20 hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+         @mouseenter="active = 3">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="assets/b2" 
+                 alt="Seasonal Collection" 
+                 class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+            <div class="absolute inset-0 bg-zinc-950/40 group-hover:bg-zinc-950/20 transition-colors"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-transparent to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex flex-col justify-between">
+            <div class="space-y-2 md:space-y-4">
+                <span class="text-[9px] md:text-[10px] font-black text-white/60 uppercase tracking-widest">Available Now</span>
+                <h4 class="text-xl md:text-2xl font-black text-white tracking-tight leading-tight">Seasonal <br> Editions</h4>
+            </div>
+            
+            <div class="pt-6 flex items-center justify-between text-white border-t border-white/20 mt-4">
+                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Spring '26</span>
+                <div class="w-8 h-8 rounded-full bg-white text-zinc-900 flex items-center justify-center">
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- 
+           <div class="lg:col-span-4 flex flex-col gap-4 md:gap-6">
+    
+    <div class="flex-1 min-h-[220px] group relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-white dark:bg-zinc-900 p-6 md:p-8 border border-zinc-100 dark:border-zinc-800 shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer"
+         @mouseenter="active = 2">
+        
+        <div class="relative z-10 space-y-4">
+            <div class="flex justify-between items-start">
+                <i data-lucide="package" class="w-7 h-7 md:w-8 md:h-8 text-primary group-hover:rotate-12 transition-transform"></i>
+                <span class="text-[9px] md:text-[10px] font-black text-zinc-300 dark:text-zinc-500 uppercase tracking-widest">Drop 04/10</span>
+            </div>
+            
+            <div>
+                <h4 class="text-xl md:text-2xl font-black tracking-tight text-zinc-900 dark:text-white">Limited Drops</h4>
+                <p class="text-zinc-500 dark:text-zinc-400 text-[11px] md:text-xs leading-relaxed mt-1">Small-batch releases of curated basics using recycled yarns.</p>
+            </div>
+            
+            <div class="pt-2 md:pt-4 space-y-2">
+                <div class="flex justify-between text-[8px] font-black uppercase tracking-widest text-primary">
+                    <span>Stock Remaining</span>
+                    <span>12%</span>
+                </div>
+                <div class="w-full h-1 bg-zinc-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary transition-all duration-1000" style="width: 12%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <i data-lucide="clock" class="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 text-zinc-50 dark:text-zinc-800/10 -z-0"></i>
+    </div>
+
+    <div class="flex-1 min-h-[180px] group relative overflow-hidden rounded-[2.5rem] md:rounded-[3rem] bg-primary p-6 md:p-8 shadow-xl shadow-green-900/10 hover:-translate-y-2 transition-all duration-500 cursor-pointer"
+         @mouseenter="active = 3">
+        
+        <div class="relative z-10 h-full flex flex-col justify-between">
+            <div class="space-y-2 md:space-y-4">
+                <span class="text-[9px] md:text-[10px] font-black text-white/60 uppercase tracking-widest">Available Now</span>
+                <h4 class="text-xl md:text-2xl font-black text-white tracking-tight leading-tight">Seasonal <br> Editions</h4>
+            </div>
+            
+            <div class="pt-6 flex items-center justify-between text-white border-t border-white/10 mt-4">
+                <span class="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Spring '26</span>
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+            </div>
+        </div>
+        
+        <i data-lucide="leaf" class="absolute -top-4 -right-4 w-20 h-20 md:w-24 md:h-24 text-white/10 rotate-45"></i>
+    </div>
+
+</div> -->
         </div>
     </div>
 </section>
