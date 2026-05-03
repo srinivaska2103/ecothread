@@ -36,10 +36,19 @@
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-500 flex items-center justify-center min-h-screen p-4 overflow-x-hidden">
 
     <header class="absolute top-0 left-0 w-full p-4 md:p-6 flex justify-between items-center z-50">
-        <a href="index.html" class="flex items-center gap-2 group">
-            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12 shadow-lg">E</div>
-            <span class="text-lg md:text-xl font-black tracking-tighter group-hover:text-primary transition-colors">ECO THREAD</span>
-        </a>
+                   <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
 
         <div class="flex items-center gap-2">
             <button @click="toggleLayout()" class="p-2 md:p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black uppercase" title="Switch Direction">
@@ -55,7 +64,7 @@
     <main class="w-full max-w-2xl text-center space-y-8 md:space-y-12 px-2 relative z-10">
         
         <div class="relative inline-block">
-            <h1 class="text-[8rem] sm:text-[12rem] md:text-[18rem] font-black leading-none text-zinc-200 dark:text-zinc-900 animate-float no-select">
+            <h1 class="text-[8rem] sm:text-[12rem] md:text-[18rem] font-semibold leading-none text-zinc-200 dark:text-zinc-900 animate-float no-select">
                 404
             </h1>
             <div class="absolute inset-0 flex items-center justify-center translate-y-4 md:translate-y-12">

@@ -30,12 +30,19 @@
    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700" x-data="{ mobileMenu: false, profileDrop: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html">
-                       <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                </div>
-                </a>
+               <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
              
 <div class="hidden lg:flex space-x-6 items-center" 
      x-data="{ 
@@ -140,22 +147,26 @@
                 </div>
             </div>
         </div>
-        <div x-show="mobileMenu" 
+ <!-- Added 'absolute inset-x-0 z-50 shadow-xl' to fix the layout shift -->
+<div x-show="mobileMenu" 
      x-cloak 
      x-transition:enter="transition ease-out duration-200"
      x-transition:enter-start="opacity-0 -translate-y-4"
      x-transition:enter-end="opacity-100 translate-y-0"
-     class="lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1"
+     class="absolute inset-x-0 z-50 lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1 shadow-xl"
      x-data="{ 
         currentPath: window.location.pathname.split('/').pop() || 'index.html',
         mobProfileDrop: false,
         isActive(href) { return this.currentPath === href; }
      }">
     
+    <!-- ... Rest of your menu items stay the same ... -->
+    
     <a href="index.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('index.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home</a>
     
-    <a href="home2.html" class="block py-3 text-lg transition-colors" 
+    <!-- ... (All other links) ... -->
+  <a href="home2.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('home2.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home 2</a>
     
     <a href="shop.html" class="block py-3 text-lg transition-colors" 
@@ -166,6 +177,9 @@
     
     <a href="deals.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('deals.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Deals</a>
+
+        <a href="blog.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('blog.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Blog</a>
     
     <a href="contact.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('contact.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Contact</a>
@@ -201,11 +215,10 @@
         <button @click="toggleLayout()" class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider" x-text="layoutDir"></button>
     </div>
     <a href="login.html">
- <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
-        Login to Account
-    </button>
+        <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
+            Login to Account
+        </button>
     </a>
-   
 </div>
 
        
@@ -232,7 +245,7 @@
         <div class="max-w-5xl space-y-4 md:space-y-6">
             <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85]">
                 Fashion That <br>
-                <span class="text-primary italic opacity-90 group-hover:opacity-100 transition-opacity">Doesn't Cost</span> <br>
+                <span class="text-primary opacity-90 group-hover:opacity-100 transition-opacity">Doesn't Cost</span> <br>
                 the Earth
             </h1>
             
@@ -290,9 +303,9 @@
          x-init="lucide.createIcons()"> <div class="max-w-7xl mx-auto px-6 lg:px-16">
         
         <div class="text-center mb-16 md:mb-24 space-y-4">
-            <h2 class="text-primary font-black uppercase text-[10px] md:text-xs tracking-[0.4em] animate-pulse">The Reality Check</h2>
-            <h3 class="text-4xl md:text-6xl lg:text-7xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                Old Waste. <span class="text-primary italic">New Narrative</span>
+            <h2 class="text-primary font-semibold uppercase text-[10px] md:text-xs tracking-[0.4em] animate-pulse">The Reality Check</h2>
+            <h3 class="text-4xl md:text-6xl lg:text-7xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
+                Old Waste. <span class="text-primary ">New Narrative</span>
             </h3>
         </div>
 
@@ -408,7 +421,7 @@
         
         <div class="text-center mb-20 space-y-4">
             <h2 class="text-primary font-black uppercase text-[10px] md:text-xs tracking-[0.4em]">The Process</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
+            <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter">
                 From Waste to <span class="text-primary italic">Wow</span>
             </h3>
         </div>
@@ -522,8 +535,8 @@
         
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div class="space-y-2">
-                <h2 class="text-primary font-black uppercase text-[10px] tracking-[0.3em]">The Favorites</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter">
+                <h2 class="text-primary font-semibold uppercase text-[10px] tracking-[0.3em]">The Favorites</h2>
+                <h3 class="text-4xl md:text-5xl font-semibold text-zinc-900 dark:text-white tracking-tighter">
                     Featured <span class="text-primary italic">Collection</span>
                 </h3>
             </div>
@@ -610,7 +623,7 @@
         
         <div class="max-w-3xl mb-16 space-y-4">
             <h2 class="text-primary font-black uppercase text-[10px] tracking-[0.4em]">Our Footprint</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-tight">
+            <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-tight">
                 Numbers That <br> <span class="text-primary italic">Actually Matter</span>
             </h3>
             <p class="text-zinc-500 dark:text-zinc-400 text-sm md:text-lg leading-relaxed max-w-xl">
@@ -736,7 +749,7 @@
                             <span class="text-[10px] font-black uppercase tracking-[0.4em]">Our Soul</span>
                         </div>
                         
-                        <h3 class="text-4xl md:text-5xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                        <h3 class="text-4xl md:text-5xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
                             Made by <span class="italic text-primary">Hands</span> <br>
                             Made with <span class="italic">Purpose</span>
                         </h3>
@@ -792,8 +805,8 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
         
         <div class="text-center mb-16 md:mb-20 space-y-4">
-            <h2 class="text-primary font-black uppercase text-[10px] md:text-xs tracking-[0.4em]">Community Voice</h2>
-            <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
+            <h2 class="text-primary font-semibold uppercase text-[10px] md:text-xs tracking-[0.4em]">Community Voice</h2>
+            <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter">
                 Loved by <span class="text-primary italic">Conscious Rebels</span>
             </h3>
         </div>
@@ -928,8 +941,8 @@
                     Limited Access for 2026
                 </div>
 
-                <h2 class="text-5xl md:text-7xl lg:text-8xl font-black text-zinc-900 dark:text-white tracking-tighter leading-[0.9]">
-                    Unlock Your <br> <span class="text-primary italic">Eco-Legacy</span>
+                <h2 class="text-5xl md:text-7xl lg:text-8xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-[0.9]">
+                    Unlock Your <br> <span class="text-primary ">Eco-Legacy</span>
                 </h2>
 
                 <p class="text-zinc-500 dark:text-zinc-400 text-base md:text-xl leading-relaxed max-w-2xl font-medium">
@@ -1004,17 +1017,24 @@
 </script>
 
 
-     <footer class="bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 pt-10 pb-6 md:pt-12">
+  <footer class="bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 pt-10 pb-6 md:pt-12">
     <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
             
             <div class="space-y-4">
-                <a href="index.html">
-                       <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                </div>
-                </a>
+                              <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
                 <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
                     Reducing carbon footprints, one stitch at a time. High-quality upcycled clothing for the conscious generation.
                 </p>

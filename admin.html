@@ -47,36 +47,43 @@
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-zinc-800 border-r dark:border-zinc-700 -translate-x-full lg:translate-x-0 lg:static flex flex-col shadow-2xl lg:shadow-none">
             
             <div class="p-6 border-b dark:border-zinc-700 flex items-center justify-between">
-                <a href="index.html">
-                       <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                </div>
-                </a>
+                           <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
                 <button onclick="toggleSidebar()" class="lg:hidden p-2 text-zinc-400 hover:text-red-500 transition-colors">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
 
             <nav class="flex-1 overflow-y-auto p-4 space-y-1 custom-scrollbar">
-                <button onclick="switchTab('dashboard')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-zinc-100 dark:hover:bg-zinc-700" data-tab="dashboard">
+                <button onclick="switchTab('dashboard')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-black-100 dark:hover:bg-zinc-700" data-tab="dashboard">
                     <i class="fas fa-chart-pie w-5 transition-transform group-hover:scale-110"></i> 
                     <span class="font-bold text-sm">Dashboard</span>
                 </button>
-                <button onclick="switchTab('products')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-zinc-100 dark:hover:bg-zinc-700" data-tab="products">
+                <button onclick="switchTab('products')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-black-100 dark:hover:bg-zinc-700" data-tab="products">
                     <i class="fas fa-tshirt w-5 transition-transform group-hover:scale-110"></i> 
                     <span class="font-bold text-sm">Products</span>
                 </button>
-                <button onclick="switchTab('orders')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-zinc-100 dark:hover:bg-zinc-700" data-tab="orders">
+                <button onclick="switchTab('orders')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-black-100 dark:hover:bg-zinc-700" data-tab="orders">
                     <i class="fas fa-box w-5 transition-transform group-hover:scale-110"></i> 
                     <span class="font-bold text-sm">Orders</span>
                 </button>
-                <button onclick="switchTab('repairs')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-zinc-100 dark:hover:bg-zinc-700" data-tab="repairs">
+                <button onclick="switchTab('repairs')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-black-100 dark:hover:bg-zinc-700" data-tab="repairs">
                     <i class="fas fa-tools w-5 transition-transform group-hover:scale-110"></i> 
                     <span class="font-bold text-sm">Repairs</span>
                     <span class="ml-auto bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">5</span>
                 </button>
-                <button onclick="switchTab('impact')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-zinc-100 dark:hover:bg-zinc-700" data-tab="impact">
+                <button onclick="switchTab('impact')" class="nav-btn w-full flex items-center gap-4 px-4 py-3 rounded-2xl transition-all group hover:bg-black-100 dark:hover:bg-zinc-700" data-tab="impact">
                     <i class="fas fa-globe-americas w-5 transition-transform group-hover:scale-110"></i> 
                     <span class="font-bold text-sm">Impact Hub</span>
                 </button>
@@ -93,52 +100,63 @@
                
             </nav>
 
-            <div class="p-6 border-t dark:border-zinc-700 space-y-4">
-                <div class="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl">
-                    <span class="text-xs font-bold"><i class="fas fa-moon mr-2 opacity-50"></i> Dark Mode</span>
-                    <button id="themeToggle" class="w-10 h-5 bg-zinc-300 dark:bg-primary rounded-full relative transition-colors">
-                        <div class="absolute top-1 left-1 dark:translate-x-5 w-3 h-3 bg-white rounded-full transition-transform"></div>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl">
-                    <span class="text-xs font-bold"><i class="fas fa-language mr-2 opacity-50"></i> RTL</span>
-                    <button id="rtlToggle" class="w-10 h-5 bg-zinc-300 rounded-full relative transition-colors">
-                        <div id="rtlCircle" class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-transform"></div>
-                    </button>
-                </div>
-            </div>
+         
         </aside>
 
         <main class="flex-1 flex flex-col h-screen relative overflow-hidden">
             
-            <header class="h-20 glass border-b dark:border-zinc-700 flex items-center justify-between px-4 lg:px-10 z-30">
-                <div class="flex items-center gap-4">
-                    <button onclick="toggleSidebar()" class="lg:hidden p-3 bg-white dark:bg-zinc-800 rounded-xl shadow-sm border dark:border-zinc-700 text-primary">
-                        <i class="fas fa-bars-staggered text-xl"></i>
-                    </button>
-                    <div class="hidden md:flex items-center gap-2 bg-zinc-100 dark:bg-zinc-900/50 px-4 py-2 rounded-2xl border dark:border-zinc-700 focus-within:ring-2 ring-primary/20 transition-all">
-                        <i class="fas fa-search text-zinc-400"></i>
-                        <input type="text" placeholder="Search data..." class="bg-transparent border-none outline-none text-sm w-48 xl:w-64">
-                    </div>
-                </div>
+            <header class="h-20 glass border-b dark:border-zinc-700 flex items-center justify-between px-4 md:px-6 lg:px-10 z-30 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md">
+    <!-- Left: Sidebar Toggle & Search -->
+    <div class="flex items-center gap-3 md:gap-4">
+        <button onclick="toggleSidebar()" class="lg:hidden p-2.5 bg-white dark:bg-zinc-800 rounded-xl shadow-sm border dark:border-zinc-700 text-primary active:scale-95 transition-transform">
+            <i class="fas fa-bars-staggered text-lg"></i>
+        </button>
+        <!-- Search hidden on small mobile (360px) to save space -->
+        <div class="hidden sm:flex items-center gap-2 bg-zinc-100 dark:bg-zinc-900/50 px-4 py-2 rounded-2xl border dark:border-zinc-700 focus-within:ring-2 ring-primary/20 transition-all">
+            <i class="fas fa-search text-zinc-400"></i>
+            <input type="text" placeholder="Search..." class="bg-transparent border-none outline-none text-sm w-32 xl:w-64">
+        </div>
+    </div>
 
-                <div class="flex items-center gap-2 md:gap-5">
-                    <div class="hidden sm:flex gap-2">
-                        <button class="w-10 h-10 rounded-xl flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
-                            <i class="fas fa-bell"></i>
-                        </button>
-                    </div>
-                    <div class="flex items-center gap-3 pl-4 border-l dark:border-zinc-700">
-                        <div class="text-right hidden sm:block leading-tight">
-                            <p class="text-sm font-black">Alex Rivers</p>
-                            <p class="text-[10px] text-primary font-bold">Admin Manager</p>
-                        </div>
-                        <div class="w-11 h-11 bg-primary/10 border-2 border-primary/20 p-0.5 rounded-xl shadow-inner">
-                            <img src="https://ui-avatars.com/api/?name=Alex+Rivers&background=2D5A27&color=fff" class="w-full h-full rounded-[10px]" alt="Profile">
-                        </div>
-                    </div>
-                </div>
-            </header>
+    <!-- Right: Toggles & Profile -->
+    <div class="flex items-center gap-2 md:gap-5">
+        <!-- Toggles Container: Now visible on all screens -->
+        <div class="flex items-center gap-2 md:gap-3 pr-2 md:pr-4 border-r dark:border-zinc-700">
+            <!-- Dark Mode Toggle -->
+            <div class="flex items-center gap-1.5 md:gap-2 bg-zinc-50 dark:bg-zinc-900/50 p-1.5 md:p-2 rounded-xl border dark:border-zinc-700">
+                <i class="fas fa-moon text-[10px] opacity-50 dark:text-primary"></i>
+                <button id="themeToggle" class="w-8 h-4 md:w-10 md:h-5 bg-zinc-300 dark:bg-primary rounded-full relative transition-colors duration-300">
+                    <div class="dot absolute top-0.5 left-0.5 md:top-1 md:left-1 dark:translate-x-4 md:dark:translate-x-5 w-3 h-3 bg-white rounded-full transition-transform duration-300"></div>
+                </button>
+            </div>
+
+            <!-- RTL Toggle -->
+            <div class="flex items-center gap-1.5 md:gap-2 bg-zinc-50 dark:bg-zinc-900/50 p-1.5 md:p-2 rounded-xl border dark:border-zinc-700">
+                <span class="text-[8px] md:text-[10px] font-black opacity-50">RTL</span>
+                <button id="rtlToggle" class="w-8 h-4 md:w-10 md:h-5 bg-zinc-300 rounded-full relative transition-colors duration-300">
+                    <div id="rtlCircle" class="absolute top-0.5 left-0.5 md:top-1 md:left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notification: Icon only on small screens -->
+        <button class="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+            <i class="fas fa-bell text-sm md:text-base"></i>
+        </button>
+
+        <!-- Profile -->
+        <div class="flex items-center gap-2 md:gap-3 pl-2 md:pl-4 border-l dark:border-zinc-700">
+            <!-- Name hidden on 360px mobile for clarity -->
+            <div class="text-right hidden md:block leading-tight">
+                <p class="text-sm font-black dark:text-white">Alex Rivers</p>
+                <p class="text-[10px] text-primary font-bold uppercase">Admin</p>
+            </div>
+            <div class="w-9 h-9 md:w-11 md:h-11 bg-primary/10 border-2 border-primary/20 p-0.5 rounded-xl shadow-inner overflow-hidden">
+                <img src="https://ui-avatars.com/api/?name=Alex+Rivers&background=2D5A27&color=fff" class="w-full h-full rounded-[8px] md:rounded-[10px] object-cover" alt="Profile">
+            </div>
+        </div>
+    </div>
+</header>
 
             <div id="mainContent" class="flex-1 overflow-y-auto p-4 lg:p-10 custom-scrollbar">
                 

@@ -28,14 +28,23 @@
 <body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-500 flex items-center justify-center min-h-screen p-4">
 
     <header class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-50">
-        <a href="index.html" class="flex items-center gap-2 group">
-            <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold transition-transform group-hover:rotate-12 shadow-lg">E</div>
-            <span class="text-xl font-black tracking-tighter group-hover:text-primary transition-colors hidden sm:block">ECO THREAD</span>
-        </a>
+                      <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
 
         <div class="flex items-center gap-2">
-            <button @click="toggleLayout()" class="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black uppercase">
-                <span x-text="layoutDir"></span>
+            <button @click="toggleLayout()" class="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm text-[10px] font-black" title="Switch Direction">
+                <span x-text="layoutDir.toUpperCase()"></span>
             </button>
             <button @click="toggleDark()" class="p-2.5 rounded-xl bg-white dark:bg-zinc-800 border dark:border-zinc-700 shadow-sm transition-all">
                 <i x-show="!darkMode" data-lucide="moon" class="w-4 h-4"></i>

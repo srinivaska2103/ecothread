@@ -26,16 +26,22 @@
     </style>
 </head>
 <body class="bg-secondary dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 transition-all">
-
-    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700" x-data="{ mobileMenu: false, profileDrop: false }">
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-700" x-data="{ mobileMenu: false, profileDrop: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html">
-                       <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                </div>
-                </a>
+               <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
              
 <div class="hidden lg:flex space-x-6 items-center" 
      x-data="{ 
@@ -140,22 +146,26 @@
                 </div>
             </div>
         </div>
-        <div x-show="mobileMenu" 
+ <!-- Added 'absolute inset-x-0 z-50 shadow-xl' to fix the layout shift -->
+<div x-show="mobileMenu" 
      x-cloak 
      x-transition:enter="transition ease-out duration-200"
      x-transition:enter-start="opacity-0 -translate-y-4"
      x-transition:enter-end="opacity-100 translate-y-0"
-     class="lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1"
+     class="absolute inset-x-0 z-50 lg:hidden bg-white dark:bg-zinc-800 border-t dark:border-zinc-700 px-4 pt-2 pb-6 space-y-1 shadow-xl"
      x-data="{ 
         currentPath: window.location.pathname.split('/').pop() || 'index.html',
         mobProfileDrop: false,
         isActive(href) { return this.currentPath === href; }
      }">
     
+    <!-- ... Rest of your menu items stay the same ... -->
+    
     <a href="index.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('index.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home</a>
     
-    <a href="home2.html" class="block py-3 text-lg transition-colors" 
+    <!-- ... (All other links) ... -->
+  <a href="home2.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('home2.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Home 2</a>
     
     <a href="shop.html" class="block py-3 text-lg transition-colors" 
@@ -166,6 +176,9 @@
     
     <a href="deals.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('deals.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Deals</a>
+
+        <a href="blog.html" class="block py-3 text-lg transition-colors" 
+       :class="isActive('blog.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Blog</a>
     
     <a href="contact.html" class="block py-3 text-lg transition-colors" 
        :class="isActive('contact.html') ? 'text-primary font-bold bg-green-50 dark:bg-green-900/20 px-3 rounded-lg' : 'px-3'">Contact</a>
@@ -201,89 +214,96 @@
         <button @click="toggleLayout()" class="p-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-xs font-bold uppercase tracking-wider" x-text="layoutDir"></button>
     </div>
     <a href="login.html">
- <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
-        Login to Account
-    </button>
+        <button class="w-full bg-primary text-white py-4 rounded-xl mt-6 font-bold shadow-lg shadow-green-900/20 active:scale-95 transition-transform">
+            Login to Account
+        </button>
     </a>
-   
 </div>
 
        
     </nav>
 
-    <section class="relative pt-20 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-32 bg-white dark:bg-zinc-950 overflow-hidden transition-colors duration-500"
+ <section class="relative pt-16 pb-12 md:pt-28 md:pb-24 lg:pt-32 lg:pb-32 bg-white dark:bg-zinc-950 overflow-hidden transition-colors duration-500"
          x-data="{ transform: false }">
     
+    <!-- Background Decor - Hidden on 360px to improve performance and clarity -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-30 dark:opacity-10">
-        <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000"
+        <div class="absolute -top-24 -left-24 w-64 h-64 md:w-96 md:h-96 bg-primary/10 rounded-full blur-3xl transition-transform duration-1000"
              :class="transform ? 'translate-x-10 translate-y-10' : ''"></div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
-        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
             
-            <div class="w-full lg:w-1/2 space-y-6 md:space-y-8 text-center lg:text-left md:mx-auto lg:mx-0"
+            <!-- Content Left -->
+            <div class="w-full lg:w-1/2 space-y-5 md:space-y-8 text-center lg:text-left"
                  @mouseenter="transform = true" @mouseleave="transform = false">
                 
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full text-primary text-[10px] md:text-xs font-black uppercase tracking-[0.2em]">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full text-primary text-[9px] md:text-xs font-black uppercase tracking-[0.2em]">
                     <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
                     The Circular Evolution
                 </div>
 
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.9] text-zinc-900 dark:text-white">
+                <!-- Scaled heading for 360px: text-4xl -->
+                <h1 class="text-4xl xs:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] md:leading-[0.9] text-zinc-900 dark:text-white">
                     From Waste <br>
                     <span class="text-primary italic transition-opacity duration-700"
                           :class="transform ? 'opacity-100' : 'opacity-60'">to Wardrobe</span>
                 </h1>
 
-                <p class="text-base md:text-xl text-zinc-500 dark:text-zinc-400 max-w-xl md:mx-auto lg:mx-0 leading-relaxed">
-                    We don't just recycle; we resurrect. Every discarded textile holds the DNA of a new masterpiece. Explore how your choices reshape fashion history.
+                <p class="text-sm md:text-xl text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto lg:mx-0 leading-relaxed px-2 md:px-0">
+                    We don't just recycle; we resurrect. Every discarded textile holds the DNA of a new masterpiece. 
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-6">
-                    <button class="w-full sm:w-auto px-10 py-5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all shadow-xl active:scale-95 group/btn">
+                <!-- Button Stack for Mobile -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-4">
+                    <button class="w-full sm:w-auto px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-primary transition-all shadow-xl active:scale-95 group/btn">
                         Shop Collection
-                        <i data-lucide="shopping-bag" class="w-4 h-4 inline-block ml-2 group-hover/btn:rotate-6 transition-transform"></i>
+                        <i data-lucide="shopping-bag" class="w-3.5 h-3.5 inline-block ml-2 group-hover/btn:rotate-6 transition-transform"></i>
                     </button>
                     
-                    <button class="w-full sm:w-auto px-10 py-5 border-2 border-zinc-200 dark:border-zinc-700 rounded-2xl font-bold text-xs uppercase tracking-widest hover:border-primary hover:text-primary dark:hover:border-primary transition-all flex items-center justify-center gap-2">
-                        <i data-lucide="refresh-ccw" class="w-4 h-4 animate-spin-slow"></i>
-                        See the Transformation
+                    <button class="w-full sm:w-auto px-8 py-4 border-2 border-zinc-200 dark:border-zinc-700 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:border-primary hover:text-primary transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="refresh-ccw" class="w-3.5 h-3.5 animate-spin-slow"></i>
+                        Transformation
                     </button>
                 </div>
             </div>
 
-            <div class="w-full lg:w-1/2 relative group/visual cursor-pointer">
-                <div class="relative aspect-[4/5] md:aspect-[3/2] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 transform group-hover/visual:-translate-y-2">
+            <!-- Visual Right -->
+            <div class="w-full lg:w-1/2 relative group/visual cursor-pointer px-2 sm:px-0">
+                <div class="relative aspect-[4/5] xs:aspect-[1/1] md:aspect-[3/2] lg:aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-all duration-700 transform group-hover/visual:-translate-y-2">
                     
                     <div class="flex h-full w-full">
-                        
-                        <div class="w-1/2 h-full overflow-hidden relative border-r-2 border-white/20">
+                        <!-- Before -->
+                        <div class="w-1/2 h-full overflow-hidden relative border-r border-white/20">
                             <img src="assets/c1" 
                                  class="w-full h-full object-cover grayscale transition-all duration-1000 scale-105 group-hover/visual:scale-100"
                                  :class="transform ? 'grayscale-0' : 'grayscale'">
-                            <span class="absolute top-6 left-6 px-4 py-1.5 bg-black/40 backdrop-blur-sm rounded-full text-[10px] font-black uppercase text-white tracking-widest">
-                                The Raw Waste
+                            <span class="absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1 bg-black/40 backdrop-blur-sm rounded-full text-[8px] md:text-[10px] font-black uppercase text-white tracking-widest">
+                                Raw Waste
                             </span>
                         </div>
 
+                        <!-- After -->
                         <div class="w-1/2 h-full overflow-hidden relative">
                             <img src="assets/c2" 
                                  class="w-full h-full object-cover transition-all duration-1000 scale-110 group-hover/visual:scale-105">
-                            <span class="absolute top-6 right-6 px-4 py-1.5 bg-primary/80 backdrop-blur-sm rounded-full text-[10px] font-black uppercase text-white tracking-widest">
-                                The Upcycled Piece
+                            <span class="absolute top-4 right-4 md:top-6 md:right-6 px-3 py-1 bg-primary/80 backdrop-blur-sm rounded-full text-[8px] md:text-[10px] font-black uppercase text-white tracking-widest">
+                                Upcycled
                             </span>
                         </div>
                     </div>
 
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover/visual:opacity-100 transition-opacity duration-700">
-                        <span class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-white">
-                            Hover to see the evolution
+                    <!-- Overlay text: Hidden on smallest screens to keep image clear -->
+                    <div class="absolute inset-0 hidden xs:flex items-center justify-center pointer-events-none opacity-0 group-hover/visual:opacity-100 transition-opacity duration-700">
+                        <span class="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-[8px] font-black uppercase tracking-[0.3em] text-white">
+                            The Evolution
                         </span>
                     </div>
                 </div>
 
-                <div class="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 text-[10rem] md:text-[18rem] font-black text-zinc-100/70 dark:text-zinc-900/10 select-none pointer-events-none -z-10 leading-none">
+                <!-- Watermark scaled for 360px -->
+                <div class="absolute -bottom-4 -right-4 md:-bottom-10 md:-right-10 text-[6rem] xs:text-[8rem] md:text-[18rem] font-black text-zinc-100/70 dark:text-zinc-900/10 select-none pointer-events-none -z-10 leading-none">
                     ECO
                 </div>
             </div>
@@ -310,7 +330,7 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
             <div class="max-w-2xl">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3 animate-pulse">Choose Your Impact</h2>
-                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
                     Shop with <span class="text-primary italic">Intent</span>
                 </h3>
             </div>
@@ -408,8 +428,8 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
         
         <div class="mb-16 text-center lg:text-left">
-            <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
-                Define Your <span class="text-primary italic">Aestheti</span>
+            <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
+                Define Your <span class="text-primary italic">Aesthetic</span>
             </h3>
             <p class="mt-6 text-zinc-500 dark:text-zinc-400 text-sm md:text-lg max-w-xl mx-auto lg:mx-0 font-medium">
                 Curated collections categorized by silhouette and vibe. Whether you're making a statement or keeping it low-key.
@@ -486,7 +506,7 @@
         <div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div class="space-y-2">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px]">Find Your Silhouette</h2>
-                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter">
+                <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter">
                     Shop by <span class="text-primary italic">Fit</span>
                 </h3>
             </div>
@@ -569,7 +589,7 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
             <div class="max-w-2xl">
                 <h2 class="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-3">Rarity & Craft</h2>
-                <h3 class="text-4xl md:text-6xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                <h3 class="text-4xl md:text-6xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
                     Limited <span class="text-primary italic">Exclusives</span>
                 </h3>
             </div>
@@ -748,7 +768,7 @@
                     Join the 2026 Movement
                 </div>
 
-                <h2 class="text-4xl md:text-6xl lg:text-8xl font-black text-zinc-900 dark:text-white tracking-tighter leading-none">
+                <h2 class="text-4xl md:text-6xl lg:text-8xl font-semibold text-zinc-900 dark:text-white tracking-tighter leading-none">
                     Join & Save <br> <span class="text-primary italic">Sustainably.</span>
                 </h2>
 
@@ -825,12 +845,19 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
             
             <div class="space-y-4">
-                <a href="index.html">
-                       <div class="flex-shrink-0 flex items-center gap-2">
-                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">E</div>
-                    <span class="text-xl font-bold tracking-tight text-primary dark:text-green-400">ECO THREAD</span>
-                </div>
-                </a>
+                              <a href="index.html" class="group transition-opacity hover:opacity-90">
+    <div class="flex-shrink-0 flex items-center gap-3">
+        <!-- Brand Icon: Standardized to 32px (w-8 h-8) -->
+        <div class="w-8 h-8 bg-primary rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-sm">
+            E
+        </div>
+        
+        <!-- Brand Text: Aligned with the Icon -->
+        <span class="text-xl font-black tracking-tighter text-primary dark:text-green-400 uppercase">
+            Eco <span class="text-zinc-900 dark:text-white">Thread</span>
+        </span>
+    </div>
+</a>
                 <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
                     Reducing carbon footprints, one stitch at a time. High-quality upcycled clothing for the conscious generation.
                 </p>
