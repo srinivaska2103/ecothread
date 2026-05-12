@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -123,20 +125,71 @@
         <!-- Toggles Container: Now visible on all screens -->
         <div class="flex items-center gap-2 md:gap-3 pr-2 md:pr-4 border-r dark:border-zinc-700">
             <!-- Dark Mode Toggle -->
-            <div class="flex items-center gap-1.5 md:gap-2 bg-zinc-50 dark:bg-zinc-900/50 p-1.5 md:p-2 rounded-xl border dark:border-zinc-700">
-                <i class="fas fa-moon text-[10px] opacity-50 dark:text-primary"></i>
-                <button id="themeToggle" class="w-8 h-4 md:w-10 md:h-5 bg-zinc-300 dark:bg-primary rounded-full relative transition-colors duration-300">
-                    <div class="dot absolute top-0.5 left-0.5 md:top-1 md:left-1 dark:translate-x-4 md:dark:translate-x-5 w-3 h-3 bg-white rounded-full transition-transform duration-300"></div>
-                </button>
+          <div class="flex flex-col lg:flex-row items-center justify-between w-full gap-6 p-4 bg-white dark:bg-zinc-900 transition-colors duration-500"
+     x-data="{ 
+        layoutDir: localStorage.getItem('layout-dir') || 'ltr',
+        darkMode: localStorage.getItem('dark-mode') === 'true',
+        toggleLayout() {
+            this.layoutDir = this.layoutDir === 'ltr' ? 'rtl' : 'ltr';
+            localStorage.setItem('layout-dir', this.layoutDir);
+            document.documentElement.setAttribute('dir', this.layoutDir);
+        },
+        toggleDark() {
+            this.darkMode = !this.darkMode;
+            localStorage.setItem('dark-mode', this.darkMode);
+            if(this.darkMode) document.documentElement.classList.add('dark');
+            else document.documentElement.classList.remove('dark');
+        }
+     }"
+     x-init="document.documentElement.setAttribute('dir', layoutDir); if(darkMode) document.documentElement.classList.add('dark');">
+    
+    <!-- Left Side: Title and User Profile -->
+    <div class="flex items-center justify-between w-full lg:w-auto gap-6 order-1">
+        <h2 class="text-2xl font-black tracking-tighter text-zinc-900 dark:text-white">Dashboard</h2>
+        
+        <div class="flex items-center gap-4">
+            <!-- Notifications -->
+            <div class="relative cursor-pointer group">
+                <i class="fas fa-bell text-xl text-zinc-400 group-hover:text-primary transition-colors"></i>
+                <span class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-zinc-900"></span>
             </div>
+            
+            <!-- Profile -->
+            <div class="w-10 h-10 rounded-xl bg-zinc-300 overflow-hidden border-2 border-primary shadow-lg shadow-primary/20">
+                <img src="https://ui-avatars.com/api/?name=User&background=2D5A27&color=fff" alt="Profile" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
 
-            <!-- RTL Toggle -->
-            <div class="flex items-center gap-1.5 md:gap-2 bg-zinc-50 dark:bg-zinc-900/50 p-1.5 md:p-2 rounded-xl border dark:border-zinc-700">
-                <span class="text-[8px] md:text-[10px] font-black opacity-50">RTL</span>
-                <button id="rtlToggle" class="w-8 h-4 md:w-10 md:h-5 bg-zinc-300 rounded-full relative transition-colors duration-300">
-                    <div id="rtlCircle" class="absolute top-0.5 left-0.5 md:top-1 md:left-1 w-3 h-3 bg-white rounded-full transition-transform duration-300"></div>
-                </button>
-            </div>
+    <!-- Right Side: Square Action Buttons -->
+    <div class="flex items-center gap-3 order-2 border-t lg:border-t-0 pt-4 lg:pt-0 border-zinc-100 dark:border-zinc-800 w-full lg:w-auto justify-center lg:justify-end">
+        
+        <!-- Layout Direction Button -->
+        <button @click="toggleLayout()" 
+                class="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 text-[10px] font-black transition-all hover:bg-zinc-200 dark:hover:bg-zinc-700 w-11 h-11 flex items-center justify-center border border-transparent dark:border-zinc-700" 
+                title="Toggle Direction">
+            <span x-text="layoutDir.toUpperCase()"></span>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button @click="toggleDark()" 
+                class="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-all hover:bg-zinc-200 dark:hover:bg-zinc-700 w-11 h-11 flex items-center justify-center border border-transparent dark:border-zinc-700">
+            <!-- Moon Icon (Light Mode) -->
+            <template x-if="!darkMode">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+            </template>
+            <!-- Sun Icon (Dark Mode) -->
+            <template x-if="darkMode">
+                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path>
+                </svg>
+            </template>
+        </button>
+
+    </div> 
+</div>
         </div>
 
         <!-- Notification: Icon only on small screens -->
